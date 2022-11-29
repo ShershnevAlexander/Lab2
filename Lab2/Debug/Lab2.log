@@ -1,0 +1,5 @@
+﻿  main.c
+  matrix.c
+C:\Users\admin\source\repos\Lab2\Lab2\matrix.c(115,39): warning C4244: +=: преобразование "double" в "int", возможна потеря данных
+  Создание кода...
+  Lab2.vcxproj -> C:\Users\admin\source\repos\Lab2\Debug\Lab2.exe
