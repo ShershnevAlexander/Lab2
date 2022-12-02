@@ -36,6 +36,12 @@ Matrix* create_matrix(int rows, int columns) {
 
 	return matrix;
 }
+void delete_matrix(Matrix* matrix) {
+        for (int i = 0; i < matrix->rows; i++) free(matrix->matrix[i]);
+        free(matrix->matrix);
+        free(matrix);
+}
+
 Matrix* cofactor(Matrix* matrix, int delete_row, int delete_column) {
 	int rows = matrix->rows;
 	int columns = matrix->columns;
@@ -108,11 +114,12 @@ double matrix_determinant(Matrix* matrix) {
 	if (order == 1) return matrix->matrix[0][0];
 	else if (order == 2) return (matrix->matrix[0][0] * matrix->matrix[1][1]) - (matrix->matrix[0][1] * matrix->matrix[1][0]);
 	else {
-		int det = 0;
+		double det = 0;
 		int sign = 1;
 		for (int i = 0; i < order; i++) {
 			Matrix* cofactor_matrix = cofactor(matrix, 0, i);
 			det += sign * matrix->matrix[0][i] * matrix_determinant(cofactor_matrix);
+                        delete_matrix(cofactor_matrix);
 			sign *= -1;
 		}
 
